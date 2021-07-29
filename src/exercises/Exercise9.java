@@ -17,7 +17,7 @@ public class Exercise9 extends Exercise {
 
     @Override
     public void run() {
-        readFile("ex9.txt");
+        readFile("resources/ex9.txt");
         parseRowsToMap();
         printMap();
     }
