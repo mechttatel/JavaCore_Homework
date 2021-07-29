@@ -1,3 +1,5 @@
+import exercises.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +13,16 @@ public class Main {
                 new Exercise3(),
                 new Exercise4(),
                 new Exercise5(),
-                new Exercise6()
+                new Exercise6(),
+                new Exercise7(),
+                new Exercise8(),
+                new Exercise9(),
+                new Exercise10(),
+                new Exercise11(),
+                new Exercise12(),
+                new Exercise13(),
+                new Exercise14(),
+                new Exercise15(),
         };
     }
 
@@ -22,7 +33,7 @@ public class Main {
 
     private void chooseExercise() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Привет, введи номер задачи от 1 до 6");
+        System.out.println("Привет, введи номер задачи от 1 до 9");
         System.out.println("Для закрытия приложения введите 0");
 
         while (true) {

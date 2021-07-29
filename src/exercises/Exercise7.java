@@ -1,3 +1,5 @@
+package exercises;
+
 import java.math.BigInteger;
 
 public class Exercise7 extends Exercise {

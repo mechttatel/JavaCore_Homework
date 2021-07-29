@@ -1,3 +1,5 @@
+package exercises;
+
 public class Exercise4 extends Exercise {
 
     /*

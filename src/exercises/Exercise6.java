@@ -1,3 +1,5 @@
+package exercises;
+
 import java.util.Locale;
 
 public class Exercise6 extends Exercise {
