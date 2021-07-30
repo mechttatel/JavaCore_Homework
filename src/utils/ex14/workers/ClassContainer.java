@@ -12,6 +12,10 @@ import java.util.logging.Logger;
 
 public class ClassContainer {
 
+    public static final String WEAPONS = "weapons";
+    public static final String BANNED_SUBSTANCE = "banned substance";
+    public static final String STONES = "stones";
+
     public static class UntrustworthyMailWorker implements MailService {
 
         private final MailService[] mailServices;
@@ -22,13 +26,18 @@ public class ClassContainer {
             this.realMailService = new RealMailService();
         }
 
+        /*
+            Непутевый работник последовательно обрабатывает письмо, отдавая его другим сервисам,
+            полученным из конструктора, после чего обрабатывает письмо реальным сервисом и возвращает его
+        */
+
         @Override
         public Sendable processMail(Sendable mail) {
             for(MailService service : mailServices) {
                 mail = service.processMail(mail);
             }
 
-            realMailService.processMail(mail);
+            mail = realMailService.processMail(mail);
             return mail;
         }
 
@@ -44,6 +53,11 @@ public class ClassContainer {
         public Spy(Logger logger) {
             this.logger = logger;
         }
+
+        /*
+            Шпион забирает только текстовые сообщения, после чего в методе logMessage проверяет отправителя
+            и логирует письмо в зависимости от результата проверки
+        */
 
         @Override
         public Sendable processMail(Sendable mail) {
@@ -70,13 +84,17 @@ public class ClassContainer {
     }
 
     public static class Thief implements MailService {
-
         private final int minPackagePrice;
         private int stolenValue;
 
         public Thief(int minPackageCost) {
             this.minPackagePrice = minPackageCost;
         }
+
+        /*
+            Вор обрабатывает только посылки и с помощью рефлексии в методе checkAndSteal реализовано
+            изменение значения полей посылки и ее дальнейшая передача
+        */
 
         @Override
         public Sendable processMail(Sendable mail) {
@@ -120,9 +138,9 @@ public class ClassContainer {
 
     public static class Inspector implements MailService {
 
-        public static final String WEAPONS = "weapons";
-        public static final String BANNED_SUBSTANCE = "banned substance";
-        public static final String STONES = "stones";
+        /*
+           Инспектор проверяет только посылки и в зависимости от их контента выбрасывает различные исключения
+       */
 
         @Override
         public Sendable processMail(Sendable mail) {

@@ -17,10 +17,17 @@ public class Exercise9 extends Exercise {
 
     @Override
     public void run() {
+        System.out.println("\nДанные для этого задания находятся в файле ex9.txt в папке resources\n");
         readFile("resources/ex9.txt");
         parseRowsToMap();
         printMap();
     }
+
+    /*
+        Метод был создан для построчного чтения данных из файла по пути directory
+        Прочитанные строки заносятся в очередь rows, для их последующего перевода в
+        требуемый по заданию вид
+    */
 
     private void readFile(String directory) {
         try {
@@ -38,6 +45,12 @@ public class Exercise9 extends Exercise {
             e.printStackTrace();
         }
     }
+
+    /*
+        Из массива rows последовательно считываются роли и заносятся в мапу resultMap
+        в качестве ключей, после чего считываются реплики, и если реплика начинается с какой - либо роли,
+        она заносится в список мапы по ключу этой роли.
+    */
 
     private void parseRowsToMap() {
         String row = "init";
@@ -66,6 +79,13 @@ public class Exercise9 extends Exercise {
         }
     }
 
+    /*
+        Метод для проверки реплики
+
+        Метод получает массив ролей (сет ключей из мапы) и в цикле проверяет строчку
+        Если строчка начинается с какой - либо роли, метод возвращает эту роль
+        Если же строчка не соответствует не одной роли, возвращается null
+    */
     private String checkRow(String row, String[] roles) {
         for (String role : roles) {
             if (row.startsWith(role)) {
@@ -76,7 +96,12 @@ public class Exercise9 extends Exercise {
         return null;
     }
 
+    /*
+        Метод для вывода в консоль согласно заданию
+    */
+
     private void printMap() {
+        System.out.println("Результат:");
         int lineNumber = 0;
         for (Map.Entry<String, List<String>> entry : resultMap.entrySet()) {
             System.out.println(entry.getKey() + ":");

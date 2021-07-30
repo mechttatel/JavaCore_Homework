@@ -33,7 +33,7 @@ public class Main {
 
     private void chooseExercise() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Привет, введи номер задачи от 1 до 9");
+        System.out.println("Привет, введи номер задачи от 1 до 15");
         System.out.println("Для закрытия приложения введите 0");
 
         while (true) {
@@ -47,7 +47,11 @@ public class Main {
 
                 System.out.println("Задача №" + exerciseOrder);
                 exercises[exerciseOrder - 1].run();
-            } catch (Exception e) {
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            catch (Exception e) {
                 System.out.println("Пожалуйста, введите корректные данные");
             }
             finally {

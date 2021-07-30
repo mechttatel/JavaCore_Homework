@@ -8,11 +8,11 @@ public class CheckLabels {
 
     private final TextAnalyzer[] filters;
 
-    public CheckLabels(TextAnalyzer[] filters) {
+    public CheckLabels(String[] keywords, int maxLength) {
         this.filters = new TextAnalyzer[] {
-                new SpamAnalyzer("fu", "trash"),
+                new SpamAnalyzer(keywords),
                 new NegativeTextAnalyzer(),
-                new TooLongTextAnalyzer(30)
+                new TooLongTextAnalyzer(maxLength)
         };
     }
 
@@ -25,5 +25,5 @@ public class CheckLabels {
         }
 
         return Label.OK;
-    };
+    }
 }

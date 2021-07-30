@@ -6,6 +6,7 @@ public class Exercise11 extends Exercise {
 
     @Override
     public void run() {
+        System.out.println("Класс, требуемый для этого задания, находится в папке utils/ex11\n");
         System.out.println("Введите re первого числа");
         double re = scanner.nextDouble();
         System.out.println("Введите im первого числа");
