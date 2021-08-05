@@ -12,7 +12,7 @@ public class Exercise9 extends Exercise {
 
     public Exercise9() {
         rows = new LinkedList<>();
-        resultMap = new HashMap<>();
+        resultMap = new LinkedHashMap<>();
     }
 
     @Override
@@ -29,9 +29,9 @@ public class Exercise9 extends Exercise {
         требуемый по заданию вид
     */
 
-    private void readFile(String directory) {
+    private void readFile(String filePath) {
         try {
-            Path path = Paths.get(directory);
+            Path path = Paths.get(filePath);
             scanner = new Scanner(path);
 
             scanner.useDelimiter(System.getProperty("line.separator"));
@@ -68,12 +68,14 @@ public class Exercise9 extends Exercise {
         if ("textLines:".equals(rows.peek())) {
             rows.poll();
 
+            int lineNumber = 1;
             while (!rows.isEmpty()) {
                 row = rows.poll();
                 String role = checkRow(row, resultMap.keySet().toArray(String[]::new));
                 if (role != null) {
                     List<String> lines = resultMap.get(role);
-                    lines.add(row.substring(role.length() + 1));
+                    lines.add("(" + lineNumber + ") " + row.substring(role.length() + 1));
+                    lineNumber++;
                 }
             }
         }
@@ -102,12 +104,10 @@ public class Exercise9 extends Exercise {
 
     private void printMap() {
         System.out.println("Результат:");
-        int lineNumber = 0;
         for (Map.Entry<String, List<String>> entry : resultMap.entrySet()) {
             System.out.println(entry.getKey() + ":");
             for (String line : entry.getValue()) {
-                lineNumber++;
-                System.out.printf("(%d) %s%n", lineNumber, line);
+                System.out.println(line);
             }
             System.out.println();
         }
