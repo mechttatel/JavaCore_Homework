@@ -34,10 +34,8 @@ public class Exercise9 extends Exercise {
             Path path = Paths.get(filePath);
             scanner = new Scanner(path);
 
-            scanner.useDelimiter(System.getProperty("line.separator"));
-
-            while(scanner.hasNext()){
-                rows.add(scanner.next());
+            while(scanner.hasNextLine()){
+                rows.add(scanner.nextLine());
             }
 
             scanner.close();
